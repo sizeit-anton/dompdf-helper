@@ -33,7 +33,7 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```
 
 #### Configuration options
-You can override default options via the `dompdf` key in your local or global config files. See dompdfmoule\Service\dompdfFactory.php for the list of default settings.
+You can override default options via the `dompdf` key in your local or global config files. See the [dompdfmoule\Service\dompdfFactory.php](https://github.com/mikemix/dompdfmodule/blob/master/src/dompdfmodule/Service/dompdfFactory.php#L46) file for the list of default settings.
 
 Full list of possible settings is available at the official [DOMPDF library](https://github.com/dompdf/dompdf) site.
 
