@@ -18,7 +18,6 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```json
      {
          "require": {
-             // ...
              "mikemix/dompdfmodule": "1.0"
          }
      }
