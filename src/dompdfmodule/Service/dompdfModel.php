@@ -1,7 +1,7 @@
 <?php
 namespace dompdfmodule;
 
-class dompdfModel
+class dompdfModel implements ModelInterface
 {
     
 }
