@@ -1,4 +1,4 @@
 dompdfmodule
 ============
 
-DOMPDF as lightweight ZF2 module
+DOMPDF library wrapper as lightweight ZF2 module.
