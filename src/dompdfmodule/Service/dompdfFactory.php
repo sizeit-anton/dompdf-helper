@@ -44,12 +44,12 @@ class dompdfFactory implements FactoryInterface
         $dompdfDir = realpath('vendor/dompdf/dompdf');
 
         return array(
-            'DOMPDF_DIR'                   => $dompdfDir,
-            'DOMPDF_TEMP_DIR'              => sys_get_temp_dir(),
-            'DOMPDF_FONT_DIR'              => $dompdfDir . '/lib/fonts',
-            'DOMPDF_FONT_CACHE'            => $dompdfDir . '/lib/fonts',
-            'DOMPDF_INC_ACHE'              => $dompdfDir . '/include',
-            'DOMPDF_LIB_DIR'               => $dompdfDir . '/lib',
+            'DOMPDF_DIR'        => $dompdfDir,
+            'DOMPDF_TEMP_DIR'   => sys_get_temp_dir(),
+            'DOMPDF_FONT_DIR'   => $dompdfDir . '/lib/fonts',
+            'DOMPDF_FONT_CACHE' => $dompdfDir . '/lib/fonts',
+            'DOMPDF_INC_DIR'    => $dompdfDir . '/include',
+            'DOMPDF_LIB_DIR'    => $dompdfDir . '/lib',
             
             'DOMPDF_CHROOT'                => '',
             'DOMPDF_LOG_OUTPUT_FILE'       => 'data/dompdf.log',
