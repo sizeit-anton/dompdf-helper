@@ -40,6 +40,10 @@ Full list of possible settings is available at the official [DOMPDF library](htt
 #### Example usage
 
 ```php
+<?php
+
+// some controller
+
     public function indexAction()
     {
         /** @var \DOMPDF $dompdf */
