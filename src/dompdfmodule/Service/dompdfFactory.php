@@ -51,7 +51,7 @@ class dompdfFactory implements FactoryInterface
             'DOMPDF_CHROOT'                => '',
             'DOMPDF_LOG_OUTPUT_FILE'       => 'data/dompdf.log',
             'DOMPDF_DEFAULT_MEDIA_TYPE'    => 'screen',
-            'DOMPDF_DEFAULT_PAPER_SIZE'    => \CPDF_Adapter::$PAPER_SIZES['a4'],
+            'DOMPDF_DEFAULT_PAPER_SIZE'    => 'A4',
             'DOMPDF_DEFAULT_FONT'          => 'serif',
             'DOMPDF_DPI'                   => 96,
             'DOMPDF_FONT_HEIGHT_RATIO'     => 1.1,
