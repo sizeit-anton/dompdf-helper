@@ -38,12 +38,15 @@ class dompdfFactory implements FactoryInterface
      */
     protected function createDefaultSettings()
     {
+        $dompdfDir = realpath('vendor/dompdf/dompdf');
+
         return array(
+            'DOMPDF_DIR'                   => $dompdfDir,
             'DOMPDF_TEMP_DIR'              => sys_get_temp_dir(),
-            'DOMPDF_FONT_DIR'              => DOMPDF_DIR . '/lib/fonts',
-            'DOMPDF_FONT_CACHE'            => DOMPDF_DIR . '/lib/fonts',
-            'DOMPDF_INC_ACHE'              => DOMPDF_DIR . '/include',
-            'DOMPDF_LIB_DIR'               => DOMPDF_DIR . '/lib',
+            'DOMPDF_FONT_DIR'              => $dompdfDir . '/lib/fonts',
+            'DOMPDF_FONT_CACHE'            => $dompdfDir . '/lib/fonts',
+            'DOMPDF_INC_ACHE'              => $dompdfDir . '/include',
+            'DOMPDF_LIB_DIR'               => $dompdfDir . '/lib',
             
             'DOMPDF_CHROOT'                => '',
             'DOMPDF_LOG_OUTPUT_FILE'       => 'data/dompdf.log',
