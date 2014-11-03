@@ -26,8 +26,11 @@ class dompdfFactory implements FactoryInterface
                     define($settingName, $settingValue);
                 }
             }
+
+            require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
+            require_once DOMPDF_INC_DIR . '/functions.inc.php';
         }
-        
+
         $dompdf = new DOMPDF();
         return $dompdf;
     }
