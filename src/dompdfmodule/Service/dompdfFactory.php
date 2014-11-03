@@ -6,7 +6,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class dompdfFactory extends AbstractFactory
 {
-    /** @var bool */
     protected static $initialized = false;
     
     public function createService(ServiceLocatorInterface $sm)
