@@ -6,7 +6,7 @@ return array(
             'dompdf' => false,
         ),
         'factories' => array(
-            'dompdf' => 'dompdf\Service\dompdfFactory',
+            'dompdf' => 'dompdfmodule\Service\dompdfFactory',
         ),
     ),
 );
