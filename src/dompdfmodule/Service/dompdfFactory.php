@@ -1,20 +1,21 @@
 <?php
 namespace dompdfmodule\Service;
 
-use Zend\ServiceManager\AbstractFactory;
+use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use DOMPDF;
 
-class dompdfFactory extends AbstractFactory
+class dompdfFactory implements FactoryInterface
 {
     protected static $initialized = false;
     
-    public function createService(ServiceLocatorInterface $sm)
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
         // service is not shared
         // but don't register constants each time
         
         if (! self::$initialized) {
-            $config = $sm->get('config');
+            $config = $serviceLocator->get('config');
             $dompdfConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
             self::$initialized = true;
         
