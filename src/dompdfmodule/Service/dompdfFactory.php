@@ -40,10 +40,10 @@ class dompdfFactory implements FactoryInterface
     {
         return array(
             'DOMPDF_TEMP_DIR'              => sys_get_temp_dir(),
-            'DOMPDF_FONT_DIR'              => DOMPDF_FONT_DIR . '/lib/fonts',
-            'DOMPDF_FONT_CACHE'            => DOMPDF_FONT_DIR . '/lib/fonts',
-            'DOMPDF_INC_ACHE'              => DOMPDF_FONT_DIR . '/include',
-            'DOMPDF_LIB_DIR'               => DOMPDF_FONT_DIR . '/lib',
+            'DOMPDF_FONT_DIR'              => DOMPDF_DIR . '/lib/fonts',
+            'DOMPDF_FONT_CACHE'            => DOMPDF_DIR . '/lib/fonts',
+            'DOMPDF_INC_ACHE'              => DOMPDF_DIR . '/include',
+            'DOMPDF_LIB_DIR'               => DOMPDF_DIR . '/lib',
             
             'DOMPDF_CHROOT'                => '',
             'DOMPDF_LOG_OUTPUT_FILE'       => 'data/dompdf.log',
