@@ -42,6 +42,9 @@ class dompdfFactory implements FactoryInterface
             'DOMPDF_TEMP_DIR'              => sys_get_temp_dir(),
             'DOMPDF_FONT_DIR'              => DOMPDF_FONT_DIR . '/lib/fonts',
             'DOMPDF_FONT_CACHE'            => DOMPDF_FONT_DIR . '/lib/fonts',
+            'DOMPDF_INC_ACHE'              => DOMPDF_FONT_DIR . '/include',
+            'DOMPDF_LIB_DIR'               => DOMPDF_FONT_DIR . '/lib',
+            
             'DOMPDF_CHROOT'                => '',
             'DOMPDF_LOG_OUTPUT_FILE'       => 'data/dompdf.log',
             'DOMPDF_DEFAULT_MEDIA_TYPE'    => 'screen',
@@ -57,12 +60,17 @@ class dompdfFactory implements FactoryInterface
             'DOMPDF_ENABLE_HTML5PARSER'    => true,
             'DOMPDF_ENABLE_FONTSUBSETTING' => false,
             
-            'DEBUGPNG' => false,
-            'DEBUGKEEPTEMP' => false,
-                        'DEBUGPNG' => false,
-                                    'DEBUGPNG' => false,
-                                                'DEBUGPNG' => false,
-                                                            'DEBUGPNG' => false,
+            'DEBUGPNG'                => false,
+            'DEBUGKEEPTEMP'           => false,
+            'DEBUGCSS'                => false,
+            'DEBUG_LAYOUT'            => false,
+            'DEBUG_LAYOUT_LINES'      => false,
+            'DEBUG_LAYOUT_BLOCKS'     => false,
+            'DEBUG_LAYOUT_INLINE'     => false,
+            'DEBUG_LAYOUT_PADDINGBOX' => false,
+            
+            'DOMPDF_ADMIN_USERNAME' => 'admin',
+            'DOMPDF_ADMIN_PASSWORD' => 'p4$$w0rd',
         );
     }
 }
