@@ -7,8 +7,6 @@ use DOMPDF;
 
 class dompdfFactory implements FactoryInterface
 {
-    protected static $initialized = false;
-
     /**
      * @param ServiceLocatorInterface $serviceLocator
      * @return DOMPDF
@@ -18,34 +16,22 @@ class dompdfFactory implements FactoryInterface
         // service is not shared
         // but don't register constants each time
 
-        if (! self::$initialized) {
-            $this->initialize($serviceLocator);
-            self::$initialized = true;
-        }
-
-        $dompdf = new DOMPDF();
-        return $dompdf;
-    }
-
-    /**
-     * Initialize constants, require scripts.
-     * @param ServiceLocatorInterface $serviceLocator
-     */
-    protected function initialize($serviceLocator)
-    {
-        $config = $serviceLocator->get('config');
-        $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
-
-        $dompdfConfig = array_merge($this->createDefaultSettings(), $userConfig);
-
-        foreach ($dompdfConfig as $settingName => $settingValue) {
-            if (! defined($settingName)) {
-                define($settingName, $settingValue);
+        if (! defined('DOMPDF_DIR')) {
+            $config = $serviceLocator->get('config');
+            $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
+            $dompdfConfig = array_merge($this->createDefaultSettings(), $config);
+            
+            foreach ($dompdfConfig as $settingName => $settingValue) {
+                if (! defined($settingName)) {
+                    define($settingName, $settingValue);
+                }
             }
+    
+            require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
+            require_once DOMPDF_INC_DIR . '/functions.inc.php';
         }
 
-        require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
-        require_once DOMPDF_INC_DIR . '/functions.inc.php';
+        return new DOMPDF();
     }
 
     /**
