@@ -13,27 +13,35 @@ class dompdfFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        if (! defined('DOMPDF_DIR')) {
-            $config = $serviceLocator->get('config');
-            $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
-            
-            $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?
-                $userConfig['DOMPDF_DIR'] :
-                realpath('vendor/dompdf/dompdf');
-                
-            $dompdfConfig = count($userConfig) ?
-                array_merge($this->createDefaultSettings($dompdfDir), $userConfig) :
-                $this->createDefaultSettings($dompdfDir);
-            
-            foreach ($dompdfConfig as $settingName => $settingValue) {
-                if (! defined($settingName)) {
-                    define($settingName, $settingValue);
-                }
-            }
-    
-            require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
-            require_once DOMPDF_INC_DIR . '/functions.inc.php';
+        if (defined('DOMPDF_DIR')) {
+            // return object early if already initialized
+            return new DOMPDF();
         }
+        
+        // load user config
+        $config = $serviceLocator->get('config');
+        $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
+        
+        // evaluate library directory
+        $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?
+            $userConfig['DOMPDF_DIR'] :
+            realpath('vendor/dompdf/dompdf');
+        
+        // merge default config with user config if necessary
+        $dompdfConfig = count($userConfig) ?
+            array_merge($this->createDefaultSettings($dompdfDir), $userConfig) :
+            $this->createDefaultSettings($dompdfDir);
+        
+        // register constants
+        foreach ($dompdfConfig as $settingName => $settingValue) {
+            if (! defined($settingName)) {
+                define($settingName, $settingValue);
+            }
+        }
+
+        // finally load required files and create the object
+        require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
+        require_once DOMPDF_INC_DIR . '/functions.inc.php';
 
         return new DOMPDF();
     }
