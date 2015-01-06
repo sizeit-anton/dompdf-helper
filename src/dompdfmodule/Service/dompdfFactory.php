@@ -13,13 +13,11 @@ class dompdfFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        // service is not shared
-        // but don't register constants each time
-
         if (! defined('DOMPDF_DIR')) {
             $config = $serviceLocator->get('config');
-            $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
-            $dompdfConfig = array_merge($this->createDefaultSettings(), $config);
+            $dompdfConfig = isset($config['dompdf']) && count($config['dompdf']) ?
+                array_merge($this->createDefaultSettings(), $config['dompdf']) :
+                $this->createDefaultSettings();
             
             foreach ($dompdfConfig as $settingName => $settingValue) {
                 if (! defined($settingName)) {
