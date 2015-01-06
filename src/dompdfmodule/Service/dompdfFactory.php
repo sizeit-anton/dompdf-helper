@@ -15,9 +15,15 @@ class dompdfFactory implements FactoryInterface
     {
         if (! defined('DOMPDF_DIR')) {
             $config = $serviceLocator->get('config');
-            $dompdfConfig = isset($config['dompdf']) && count($config['dompdf']) ?
-                array_merge($this->createDefaultSettings(), $config['dompdf']) :
-                $this->createDefaultSettings();
+            $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
+            
+            $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?
+                $userConfig['DOMPDF_DIR'] :
+                realpath('vendor/dompdf/dompdf');
+                
+            $dompdfConfig = count($userConfig) ?
+                array_merge($this->createDefaultSettings($dompdfDir), $userConfig) :
+                $this->createDefaultSettings($dompdfDir);
             
             foreach ($dompdfConfig as $settingName => $settingValue) {
                 if (! defined($settingName)) {
@@ -34,12 +40,11 @@ class dompdfFactory implements FactoryInterface
 
     /**
      * Some settings can be evaluated by default.
-     * @return array
+     * @param string $dompdfDir DOMPDF library directory
+     * @return array Default settings
      */
-    protected function createDefaultSettings()
+    protected function createDefaultSettings($dompdfDir)
     {
-        $dompdfDir = realpath('vendor/dompdf/dompdf');
-
         return array(
             'DOMPDF_DIR'        => $dompdfDir,
             'DOMPDF_TEMP_DIR'   => sys_get_temp_dir(),
