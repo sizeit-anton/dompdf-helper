@@ -1,10 +1,15 @@
 <?php
 namespace dompdfmodule;
 
-class Module
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
+class Module implements ConfigProviderInterface
 {
+    /**
+     * {@inhertidoc}
+     */
     public function getConfig()
     {
-        return include __DIR__ . '/../../config/module.config.php';
+        return require __DIR__ . '/../../config/module.config.php';
     }
 }
