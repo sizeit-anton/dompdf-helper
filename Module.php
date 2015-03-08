@@ -1,3 +1,3 @@
 <?php
 
-include __DIR__ . '/src/dompdfmodule/Module.php';
+require __DIR__ . '/src/dompdfmodule/Module.php';
