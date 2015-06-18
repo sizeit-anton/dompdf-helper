@@ -12,5 +12,8 @@
     "psr-0": {
       "dompdfmodule": "src/"
     }
+  },
+  "suggest": {
+    "mikemix/mxdi-module": "Configure dependency injection with annotations"
   }
 }
