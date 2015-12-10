@@ -1,15 +1,19 @@
 <?php
 namespace dompdfmodule;
 
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-
-class Module implements ConfigProviderInterface
+class Module
 {
-    /**
-     * {@inhertidoc}
-     */
     public function getConfig()
     {
-        return require __DIR__ . '/../../config/module.config.php';
+        return array(
+            'service_manager' => array(
+                'shared' => array(
+                    'dompdf' => false,
+                ),
+                'factories' => array(
+                    'dompdf' => 'dompdfmodule\Service\dompdfFactory',
+                ),
+            ),
+        );
     }
 }
