@@ -3,47 +3,41 @@ namespace dompdfmodule\Service;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use DOMPDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class dompdfFactory implements FactoryInterface
 {
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     * @return DOMPDF
+     * @return Dompdf
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        if (defined('DOMPDF_DIR')) {
-            // return object early if already initialized
-            return new DOMPDF();
-        }
-        
         // load user config
         $config = $serviceLocator->get('config');
         $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
-        
+
         // evaluate library directory
         $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?
             $userConfig['DOMPDF_DIR'] :
             realpath('vendor/dompdf/dompdf');
-        
+
         // merge default config with user config if necessary
         $dompdfConfig = count($userConfig) ?
             array_merge($this->createDefaultSettings($dompdfDir), $userConfig) :
             $this->createDefaultSettings($dompdfDir);
-        
+
+        $options = new Options();
+
         // register constants
         foreach ($dompdfConfig as $settingName => $settingValue) {
             if (! defined($settingName)) {
-                define($settingName, $settingValue);
+                $options->set($settingName, $settingValue);
             }
         }
 
-        // finally load required files and create the object
-        require_once DOMPDF_LIB_DIR . '/html5lib/Parser.php';
-        require_once DOMPDF_INC_DIR . '/functions.inc.php';
-
-        return new DOMPDF();
+        return new Dompdf($options);
     }
 
     /**
@@ -54,40 +48,27 @@ class dompdfFactory implements FactoryInterface
     protected function createDefaultSettings($dompdfDir)
     {
         return array(
-            'DOMPDF_DIR'        => $dompdfDir,
-            'DOMPDF_TEMP_DIR'   => sys_get_temp_dir(),
-            'DOMPDF_FONT_DIR'   => $dompdfDir . '/lib/fonts',
-            'DOMPDF_FONT_CACHE' => $dompdfDir . '/lib/fonts',
-            'DOMPDF_INC_DIR'    => $dompdfDir . '/include',
-            'DOMPDF_LIB_DIR'    => $dompdfDir . '/lib',
+            'logOutputFile'           => false,
+            'defaultMediaType'        => 'screen',
+            'defaultPaperSize'        => 'A4',
+            'defaultFont'             => 'serif',
+            'dpi'                     => 96,
+            'pdfBackend'              => 'CPDF',
+            'fontHeightRatio'         => 1.1,
+            'isPhpEnabled'            => false,
+            'isRemoteEnabled'         => false,
+            'isJavascriptEnabled'     => false,
+            'isHtml5ParserEnabled'    => true,
+            'isFontSubsettingEnabled' => false,
 
-            'DOMPDF_CHROOT'                => '',
-            'DOMPDF_LOG_OUTPUT_FILE'       => false,
-            'DOMPDF_DEFAULT_MEDIA_TYPE'    => 'screen',
-            'DOMPDF_DEFAULT_PAPER_SIZE'    => 'A4',
-            'DOMPDF_DEFAULT_FONT'          => 'serif',
-            'DOMPDF_DPI'                   => 96,
-            'DOMPDF_PDF_BACKEND'           => 'CPDF',
-            'DOMPDF_FONT_HEIGHT_RATIO'     => 1.1,
-            'DOMPDF_UNICODE_ENABLED'       => true,
-            'DOMPDF_ENABLE_PHP'            => false,
-            'DOMPDF_ENABLE_REMOTE'         => false,
-            'DOMPDF_ENABLE_CSS_FLOAT'      => true,
-            'DOMPDF_ENABLE_JAVASCRIPT'     => false,
-            'DOMPDF_ENABLE_HTML5PARSER'    => true,
-            'DOMPDF_ENABLE_FONTSUBSETTING' => false,
-
-            'DEBUGPNG'                => false,
-            'DEBUGKEEPTEMP'           => false,
-            'DEBUGCSS'                => false,
-            'DEBUG_LAYOUT'            => false,
-            'DEBUG_LAYOUT_LINES'      => false,
-            'DEBUG_LAYOUT_BLOCKS'     => false,
-            'DEBUG_LAYOUT_INLINE'     => false,
-            'DEBUG_LAYOUT_PADDINGBOX' => false,
-
-            'DOMPDF_ADMIN_USERNAME' => 'admin',
-            'DOMPDF_ADMIN_PASSWORD' => 'p4$$w0rd',
+            'debugPng'              => false,
+            'debugKeepTemp'         => false,
+            'debugCss'              => false,
+            'debugLayout'           => false,
+            'debugLayoutLines'      => false,
+            'debugLayoutBlocks'     => false,
+            'debugLayoutInline'     => false,
+            'debugLayoutPaddingBox' => false,
         );
     }
 }
