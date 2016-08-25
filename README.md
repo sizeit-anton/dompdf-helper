@@ -1,10 +1,10 @@
 dompdfmodule
 ============
 
-DOMPDF library wrapper as lightweight ZF2 module.
+DOMPDF library wrapper as lightweight ZF2/ZF3 module.
 
 ## Requirements
-  - [Zend Framework 2](http://www.github.com/zendframework/zf2)
+  - [Zend Framework 2 or 3](https://framework.zend.com/)
 
 ## Installation
 Installation of DOMPDFModule uses PHP Composer. For more information about
@@ -18,7 +18,7 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```json
      {
          "require": {
-             "mikemix/dompdfmodule": "1.*"
+             "mikemix/dompdfmodule": "^2.0"
          }
      }
      ```
