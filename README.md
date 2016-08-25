@@ -3,6 +3,8 @@ dompdfmodule
 
 DOMPDF library wrapper as lightweight ZF2/ZF3 module.
 
+[![Build Status](https://travis-ci.org/mikemix/dompdfmodule.svg?branch=master)](https://travis-ci.org/mikemix/dompdfmodule)
+
 ## Requirements
   - [Zend Framework 2 or 3](https://framework.zend.com/)
 
