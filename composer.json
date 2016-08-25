@@ -1,16 +1,17 @@
 {
   "name": "mikemix/dompdfmodule",
   "type": "library",
-  "description": "DOMPDF ZF2 lightweight module",
-  "keywords": ["pdf","dompdf", "zf2"],
-  "homepage": "http://www.phpcontext.com",
+  "description": "DOMPDF Zend Framework lightweight module",
+  "keywords": ["pdf","dompdf", "zf2", "zf3"],
+  "homepage": "https://www.phpcontext.com",
   "require": {
-    "php": ">=5.3.0",
-    "dompdf/dompdf": "^0.7.0"
+    "php": "^5.4 || ^7.0",
+    "dompdf/dompdf": "^0.7.0",
+    "zendframework/zend-servicemanager": "^2.0 || ^3.0"
   },
   "autoload": {
-    "psr-0": {
-      "dompdfmodule": "src/"
+    "psr-4": {
+      "dompdfmodule\\": "src/"
     }
   },
   "suggest": {

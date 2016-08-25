@@ -1,5 +1,5 @@
 <?php
-namespace dompdfmodule\Service;
+namespace dompdfmodule\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -8,15 +8,19 @@ use Dompdf\Options;
 
 class dompdfFactory implements FactoryInterface
 {
-    /**
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return Dompdf
-     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return $this->createFromConfig($container->get('config'));
+    }
+
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        // load user config
-        $config = $serviceLocator->get('config');
-        $userConfig = isset($config['dompdf']) ? $config['dompdf'] : array();
+        return $this->createFromConfig($serviceLocator->get('config'));
+    }
+
+    protected function createFromConfig(array $config)
+    {
+        $userConfig = isset($config['dompdf']) ? $config['dompdf'] : [];
 
         // evaluate library directory
         $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?

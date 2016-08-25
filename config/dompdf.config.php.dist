@@ -2,7 +2,7 @@
 
 $dompdfDir = realpath('vendor/dompdf/dompdf');
 
-return array(
+return [
     'logOutputFile' => false,
     'defaultMediaType' => 'screen',
     'defaultPaperSize' => 'A4',
@@ -23,4 +23,4 @@ return array(
     'debugLayoutBlocks' => false,
     'debugLayoutInline' => false,
     'debugLayoutPaddingBox' => false,
-);
+];
