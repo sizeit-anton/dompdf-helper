@@ -12,7 +12,7 @@ class dompdfFactoryTest extends \PHPUnit_Framework_TestCase
         $this->factory = new dompdfFactory();
     }
 
-    public function test_it_it_initializable()
+    public function test_it_is_initializable()
     {
         self::assertInstanceOf('dompdfmodule\Factory\dompdfFactory', $this->factory);
     }
