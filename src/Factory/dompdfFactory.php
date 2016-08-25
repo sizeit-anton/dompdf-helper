@@ -1,10 +1,11 @@
 <?php
 namespace dompdfmodule\Factory;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 class dompdfFactory implements FactoryInterface
 {
