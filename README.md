@@ -47,7 +47,7 @@ Full list of possible settings is available at the official [DOMPDF library](htt
 
     public function indexAction()
     {
-        /** @var \DOMPDF $dompdf */
+        /** @var \Dompdf\Dompdf $dompdf */
         $dompdf = $this->getServiceLocator()->get('dompdf');
         $dompdf->load_html('<strong>Ehlo World</strong>');
         $dompdf->render();
