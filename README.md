@@ -40,6 +40,8 @@ Full list of possible settings is available at the official [DOMPDF library](htt
 
 #### Example usage
 
+> Side note: use of `getServiceLocator()` in the controller is deprecated since in ZF3. Make sure you create your controller via a factory and inject the Dompdf object in the constructor.
+
 ```php
 <?php
 
