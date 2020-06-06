@@ -41,14 +41,8 @@ class DompdfFactoryTest extends TestCase
     {
         $factory = $this->factory;
 
-        $config = [
-            'dompdf' => [
-                'defaultPaperSize' => 'A5',
-            ],
-        ];
-
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('config', $config);
+        $serviceManager->setService('config', []);
 
         $domPdf = $factory($serviceManager, null);
         $this->assertInstanceOf(Dompdf::class, $domPdf);

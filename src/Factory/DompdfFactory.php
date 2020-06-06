@@ -26,10 +26,8 @@ class DompdfFactory implements FactoryInterface
     {
         $userConfig = isset($config['dompdf']) ? $config['dompdf'] : [];
 
-        // merge default config with user config if necessary
-        $dompdfConfig = count($userConfig) ?
-            array_merge($this->createDefaultSettings(), $userConfig) :
-            $this->createDefaultSettings();
+        // merge default config with user config
+        $dompdfConfig = array_merge($this->createDefaultSettings(), $userConfig);
 
         // set options
         $options = new Options();
