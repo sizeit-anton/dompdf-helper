@@ -32,5 +32,6 @@
 			"name" : "mikemix",
 			"role" : "Original developer"
 		}
-	]
+	],
+	"license" : "BSD 3-Clause License"
 }
