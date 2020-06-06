@@ -1,4 +1,5 @@
 <?php
+
 namespace dompdfmodule\Tests;
 
 use dompdfmodule\Module;

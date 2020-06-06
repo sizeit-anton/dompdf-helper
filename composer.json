@@ -1,20 +1,16 @@
 {
-  "name": "mikemix/dompdfmodule",
+  "name": "rarog/dompdfmodule",
   "type": "library",
-  "description": "DOMPDF Zend Framework lightweight module",
-  "keywords": ["pdf","dompdf", "zf2", "zf3"],
-  "homepage": "https://www.phpcontext.com",
+  "description": "DOMPDF Laminas lightweight module",
+  "keywords": ["pdf","dompdf", "laminas"],
   "require": {
-    "php": "^5.5 || ^7.0",
-    "dompdf/dompdf": "^0.8.0",
-    "laminas/laminas-servicemanager": "^2.0 || ^3.0"
+    "php": "^7.1",
+    "dompdf/dompdf": "^0.8.4",
+    "laminas/laminas-servicemanager": "^3.0"
   },
   "autoload": {
     "psr-4": {
       "dompdfmodule\\": "src/"
     }
-  },
-  "suggest": {
-    "mikemix/mxdi-module": "Configure dependency injection with annotations"
   }
 }

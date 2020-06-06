@@ -1,12 +1,12 @@
 dompdfmodule
 ============
 
-DOMPDF library wrapper as lightweight ZF2/ZF3 module.
+DOMPDF library wrapper as lightweight Laminas module.
 
-[![Build Status](https://travis-ci.org/mikemix/dompdfmodule.svg?branch=master)](https://travis-ci.org/mikemix/dompdfmodule)
+[![Build Status](https://travis-ci.org/rarog/dompdfmodule.svg?branch=master)](https://travis-ci.org/rarog/dompdfmodule)
 
 ## Requirements
-  - [Zend Framework 2 or 3](https://framework.zend.com/)
+  - [Laminas](https://getlaminas.org/)
 
 ## Installation
 Installation of DOMPDFModule uses PHP Composer. For more information about
@@ -20,14 +20,14 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```json
      {
          "require": {
-             "mikemix/dompdfmodule": "^3.0"
+             "rarog/dompdfmodule": "^4.0"
          }
      }
      ```
   3. install PHP Composer via `curl -s http://getcomposer.org/installer | php` (on windows, download
      http://getcomposer.org/installer and execute it with PHP)
   4. run `php composer.phar install`
-  5. open `my/project/directory/config/application.config.php` and add the following key to your `modules`: 
+  5. open `my/project/directory/config/application.config.php` and add the following key to your `modules`:
 
      ```php
      'dompdfmodule',
@@ -40,20 +40,65 @@ Full list of possible settings is available at the official [DOMPDF library](htt
 
 #### Example usage
 
-> Side note: use of `getServiceLocator()` in the controller is deprecated since in ZF3. Make sure you create your controller via a factory and inject the Dompdf object in the constructor.
+Controller factory
 
 ```php
 <?php
 
-// some controller
+namespace My\Factory\Controller;
+
+use Interop\Container\ContainerInterface;
+use My\Controller\ExampleController;
+
+class ExampleControllerFactory implements FactoryInterface
+{
+    /**
+     * {@inheritDoc}
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        return new ExampleController(
+            $container->get('dompdf')
+        );
+    }
+}
+```
+
+Controller
+
+```php
+<?php
+
+namespace My\ExampleController;
+
+use Dompdf\Dompdf;
+use Laminas\Mvc\Controller\AbstractActionController;
+
+class ExampleController extends AbstractActionController
+{
+    /**
+     * @var Dompdf
+     */
+    private $dompdf;
+
+    /**
+     * Constructor
+     *
+     * @param Dompdf $dompdf
+     */
+    public function __construct(
+        Dompdf $dompdf
+    ) {
+        $this->dompdf = $dompdf;
+    }
 
     public function indexAction()
     {
-        /** @var \Dompdf\Dompdf $dompdf */
-        $dompdf = $this->getServiceLocator()->get('dompdf');
-        $dompdf->load_html('<strong>Ehlo World</strong>');
-        $dompdf->render();
+        $this->dompdf->load_html('<strong>Hello World</strong>');
+        $this->dompdf->render();
 
-        file_put_contents(__DIR__ . '/document.pdf', $dompdf->output());
+        file_put_contents(__DIR__ . '/document.pdf', $this->dompdf->output());
     }
+}
 ```

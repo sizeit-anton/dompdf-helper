@@ -1,24 +1,27 @@
 <?php
+
 namespace dompdfmodule\Factory;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Interop\Container\ContainerInterface;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 
 class dompdfFactory implements FactoryInterface
 {
+    /**
+     * {@inheritDoc}
+     * @see \Laminas\ServiceManager\Factory\FactoryInterface::__invoke()
+     */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return $this->createFromConfig($container->get('config'));
     }
 
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return $this->createFromConfig($serviceLocator->get('config'));
-    }
-
+    /**
+     * @param array $config Configuration
+     * @return Dompdf Dompdf instance
+     */
     protected function createFromConfig(array $config)
     {
         $userConfig = isset($config['dompdf']) ? $config['dompdf'] : [];

@@ -1,4 +1,5 @@
 <?php
+
 namespace dompdfmodule\Tests\Factory;
 
 use dompdfmodule\Factory\dompdfFactory;
