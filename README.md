@@ -1,16 +1,16 @@
-dompdfmodule
+DompdfHelper
 ============
 
-DOMPDF library wrapper as lightweight Laminas module.
+DompdfHelper - a lightweight library wrapper Laminas module
 
-[![Build Status](https://travis-ci.org/rarog/dompdfmodule.svg?branch=master)](https://travis-ci.org/rarog/dompdfmodule)
-[![Coverage Status](https://coveralls.io/repos/github/rarog/dompdfmodule/badge.svg?branch=master)](https://coveralls.io/github/rarog/dompdfmodule?branch=master)
+[![Build Status](https://travis-ci.org/rarog/dompdf-helper.svg?branch=master)](https://travis-ci.org/rarog/dompdf-helper)
+[![Coverage Status](https://coveralls.io/repos/github/rarog/dompdf-helper/badge.svg?branch=master)](https://coveralls.io/github/rarog/dompdf-helper?branch=master)
 
 ## Requirements
   - [Laminas](https://getlaminas.org/)
 
 ## Installation
-Installation of DOMPDFModule uses PHP Composer. For more information about
+Installation of DompdfHelper uses PHP Composer. For more information about
 PHP Composer, please visit the official [PHP Composer site](http://getcomposer.org/).
 
 #### Installation steps
@@ -21,7 +21,7 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
      ```json
      {
          "require": {
-             "rarog/dompdfmodule": "^4.0"
+             "rarog/dompdf-helper": "^4.0"
          }
      }
      ```
@@ -31,13 +31,13 @@ PHP Composer, please visit the official [PHP Composer site](http://getcomposer.o
   5. open `my/project/directory/config/application.config.php` and add the following key to your `modules`:
 
      ```php
-     'dompdfmodule',
+     'DompdfHelper',
      ```
 
 #### Configuration options
-You can override default options via the `dompdf` key in your local or global config files. See the [dompdfmoule\Service\dompdfFactory.php](https://github.com/mikemix/dompdfmodule/blob/master/src/dompdfmodule/Service/dompdfFactory.php#L39) file for the list of default settings.
+You can override default options via the `dompdf` key in your local or global config files. See the [config/dompdf.config.php.dist](https://github.com/rarog/dompdf-helper/blob/master/config/dompdf.config.php.dist) file for the list of default settings.
 
-Full list of possible settings is available at the official [DOMPDF library](https://github.com/dompdf/dompdf) site.
+Full list of possible settings is available at the official [Dompdf library](https://github.com/dompdf/dompdf) site.
 
 #### Example usage
 

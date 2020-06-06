@@ -1,6 +1,6 @@
 <?php
 
-namespace dompdfmodule\Factory;
+namespace DompdfHelper\Factory;
 
 use Dompdf\Dompdf;
 use Dompdf\Options;

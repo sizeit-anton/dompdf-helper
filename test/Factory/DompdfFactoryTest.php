@@ -1,10 +1,11 @@
 <?php
 
-namespace dompdfmodule\Tests\Factory;
+namespace DompdfModuleTest\Factory;
 
-use dompdfmodule\Factory\DompdfFactory;
+use DompdfHelper\Factory\DompdfFactory;
+use PHPUnit\Framework\TestCase;
 
-class DompdfFactoryTest extends \PHPUnit\Framework\TestCase
+class DompdfFactoryTest extends TestCase
 {
     private $factory;
 
@@ -26,8 +27,11 @@ class DompdfFactoryTest extends \PHPUnit\Framework\TestCase
         unset($this->factory);
     }
 
-    public function testInitWentThrough()
+    /**
+     * @covers DompdfHelper\Factory\DompdfFactory::__invoke
+     */
+    public function testInitWentThrough(): void
     {
-        self::assertInstanceOf(DompdfFactory::class, $this->factory);
+        $this->assertInstanceOf(DompdfFactory::class, $this->factory);
     }
 }
