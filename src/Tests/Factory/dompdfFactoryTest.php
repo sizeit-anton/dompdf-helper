@@ -4,7 +4,7 @@ namespace dompdfmodule\Tests\Factory;
 
 use dompdfmodule\Factory\dompdfFactory;
 
-class dompdfFactoryTest extends \PHPUnit_Framework_TestCase
+class dompdfFactoryTest extends \PHPUnit\Framework\TestCase
 {
     private $factory;
 
