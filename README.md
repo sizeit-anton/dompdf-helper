@@ -70,7 +70,7 @@ Controller
 ```php
 <?php
 
-namespace My\ExampleController;
+namespace My\Controller;
 
 use Dompdf\Dompdf;
 use Laminas\Mvc\Controller\AbstractActionController;
