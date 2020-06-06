@@ -26,15 +26,10 @@ class DompdfFactory implements FactoryInterface
     {
         $userConfig = isset($config['dompdf']) ? $config['dompdf'] : [];
 
-        // evaluate library directory
-        $dompdfDir = isset($userConfig['DOMPDF_DIR']) ?
-            $userConfig['DOMPDF_DIR'] :
-            realpath('vendor/dompdf/dompdf');
-
         // merge default config with user config if necessary
         $dompdfConfig = count($userConfig) ?
-            array_merge($this->createDefaultSettings($dompdfDir), $userConfig) :
-            $this->createDefaultSettings($dompdfDir);
+            array_merge($this->createDefaultSettings(), $userConfig) :
+            $this->createDefaultSettings();
 
         // set options
         $options = new Options();
@@ -49,10 +44,9 @@ class DompdfFactory implements FactoryInterface
 
     /**
      * Some settings can be evaluated by default.
-     * @param string $dompdfDir DOMPDF library directory
      * @return array Default settings
      */
-    protected function createDefaultSettings($dompdfDir)
+    protected function createDefaultSettings(): array
     {
         return [
             'logOutputFile'           => false,
