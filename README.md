@@ -4,7 +4,7 @@ dompdfmodule
 DOMPDF library wrapper as lightweight Laminas module.
 
 [![Build Status](https://travis-ci.org/rarog/dompdfmodule.svg?branch=master)](https://travis-ci.org/rarog/dompdfmodule)
-[![Coverage Status](https://coveralls.io/repos/github/rarog/dompdfmodule/badge.svg?branch=master)](https://coveralls.io/github/rarog/dompdfmodule?branch=master
+[![Coverage Status](https://coveralls.io/repos/github/rarog/dompdfmodule/badge.svg?branch=master)](https://coveralls.io/github/rarog/dompdfmodule?branch=master)
 
 ## Requirements
   - [Laminas](https://getlaminas.org/)
