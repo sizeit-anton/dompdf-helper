@@ -2,6 +2,8 @@
 
 namespace dompdfmodule;
 
+use dompdfmodule\Factory\DompdfFactory;
+
 class Module
 {
     public function getConfig()
@@ -12,7 +14,7 @@ class Module
                     'dompdf' => false,
                 ],
                 'factories' => [
-                    'dompdf' => 'dompdfmodule\Factory\dompdfFactory',
+                    'dompdf' => DompdfFactory::class,
                 ],
             ],
         ];

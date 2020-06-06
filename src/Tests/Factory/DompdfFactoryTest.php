@@ -2,9 +2,9 @@
 
 namespace dompdfmodule\Tests\Factory;
 
-use dompdfmodule\Factory\dompdfFactory;
+use dompdfmodule\Factory\DompdfFactory;
 
-class dompdfFactoryTest extends \PHPUnit\Framework\TestCase
+class DompdfFactoryTest extends \PHPUnit\Framework\TestCase
 {
     private $factory;
 
@@ -26,8 +26,8 @@ class dompdfFactoryTest extends \PHPUnit\Framework\TestCase
         unset($this->factory);
     }
 
-    public function test_it_is_initializable()
+    public function testInitWentThrough()
     {
-        self::assertInstanceOf('dompdfmodule\Factory\dompdfFactory', $this->factory);
+        self::assertInstanceOf(DompdfFactory::class, $this->factory);
     }
 }

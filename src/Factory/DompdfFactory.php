@@ -7,7 +7,7 @@ use Dompdf\Options;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
-class dompdfFactory implements FactoryInterface
+class DompdfFactory implements FactoryInterface
 {
     /**
      * {@inheritDoc}
@@ -54,7 +54,7 @@ class dompdfFactory implements FactoryInterface
      */
     protected function createDefaultSettings($dompdfDir)
     {
-        return array(
+        return [
             'logOutputFile'           => false,
             'defaultMediaType'        => 'screen',
             'defaultPaperSize'        => 'A4',
@@ -76,6 +76,6 @@ class dompdfFactory implements FactoryInterface
             'debugLayoutBlocks'     => false,
             'debugLayoutInline'     => false,
             'debugLayoutPaddingBox' => false,
-        );
+        ];
     }
 }

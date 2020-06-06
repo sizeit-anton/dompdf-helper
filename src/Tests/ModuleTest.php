@@ -6,10 +6,10 @@ use dompdfmodule\Module;
 
 class ModuleTest extends \PHPUnit\Framework\TestCase
 {
-    public function test_it_returns_config()
+    public function testConfigIsReturned()
     {
         $module = new Module();
 
-        self::assertInternalType('array', $module->getConfig());
+        self::assertIsArray($module->getConfig());
     }
 }
