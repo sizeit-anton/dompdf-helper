@@ -2,11 +2,16 @@
 
 namespace DompdfModuleTest\Factory;
 
+use Dompdf\Dompdf;
 use DompdfHelper\Factory\DompdfFactory;
+use Laminas\ServiceManager\ServiceManager;
 use PHPUnit\Framework\TestCase;
 
 class DompdfFactoryTest extends TestCase
 {
+    /**
+     * @var DompdfFactory
+     */
     private $factory;
 
     /**
@@ -15,7 +20,7 @@ class DompdfFactoryTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->factory = new dompdfFactory();
+        $this->factory = new DompdfFactory();
     }
 
     /**
@@ -29,9 +34,23 @@ class DompdfFactoryTest extends TestCase
 
     /**
      * @covers DompdfHelper\Factory\DompdfFactory::__invoke
+     * @covers DompdfHelper\Factory\DompdfFactory::createFromConfig
+     * @covers DompdfHelper\Factory\DompdfFactory::createDefaultSettings
      */
     public function testInitWentThrough(): void
     {
-        $this->assertInstanceOf(DompdfFactory::class, $this->factory);
+        $factory = $this->factory;
+
+        $config = [
+            'dompdf' => [
+                'defaultPaperSize' => 'A5',
+            ],
+        ];
+
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService('config', $config);
+
+        $domPdf = $factory($serviceManager, null);
+        $this->assertInstanceOf(Dompdf::class, $domPdf);
     }
 }
